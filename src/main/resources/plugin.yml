@@ -1,5 +1,5 @@
 name: BlockReference
-version: 1.2
+version: 1.3
 main: bonn2.BlockReference.Main
 api-version: 1.13
 authors: [bonn2]

@@ -74,7 +74,7 @@ public class CommandListener implements CommandExecutor {
             case "reload": {
                 if (sender.hasPermission("blockreference.reload")) {
                     Main.reload();
-                    player.sendMessage(Objects.requireNonNull(lang.getString("FinishedReloading")));
+                    player.sendMessage(Objects.requireNonNull(lang.getString("FinishedReload")));
                     return true;
                 }
                 return false;

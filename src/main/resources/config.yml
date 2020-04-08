@@ -1,2 +1,4 @@
 MaxCheckDistance: 40
 Language: en_US
+EnableStatistics: true
+ConfigVersion: 1

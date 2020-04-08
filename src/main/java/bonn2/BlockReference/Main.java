@@ -25,6 +25,10 @@ public final class Main extends JavaPlugin {
         this.getCommand("blockreference").setExecutor(new CommandListener());
         this.getCommand("blockreference").setTabCompleter(new TabComplete());
         getServer().getPluginManager().registerEvents(new ClickListener(), this);
+        if (getConfig().getBoolean("EnableStatistics")) {
+            int pluginId = 7055;
+            Metrics metrics = new Metrics(this, pluginId);
+        }
     }
 
     public static void setupConfig() {
@@ -43,9 +47,6 @@ public final class Main extends JavaPlugin {
             plugin.saveResource(selectedLang + ".yml", false);
         }
         lang = YamlConfiguration.loadConfiguration(langyml);
-        if (lang == null) {
-            plugin.getLogger().warning("Failed to load language config file!");
-        }
     }
 
     public static void reload() {

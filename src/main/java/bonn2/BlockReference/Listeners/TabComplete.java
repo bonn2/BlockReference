@@ -15,12 +15,14 @@ public class TabComplete implements TabCompleter {
         if (args.length == 0) {
             output.add("toggle");
             output.add("look");
+            output.add("clear");
             if (sender.hasPermission("blockreference.reload")) { output.add("reload"); }
             return output;
         }
         if (args.length == 1) {
             if ("toggle".startsWith(args[0].toLowerCase())) { output.add("toggle"); }
             if ("look".startsWith(args[0].toLowerCase())) { output.add("look"); }
+            if ("clear".startsWith(args[0].toLowerCase())) { output.add("clear"); }
             if ("reload".startsWith(args[0].toLowerCase())
                     && sender.hasPermission("blockreference.reload")) { output.add("reload"); }
             return output;
