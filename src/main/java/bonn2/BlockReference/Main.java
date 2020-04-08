@@ -26,6 +26,7 @@ public final class Main extends JavaPlugin {
         this.getCommand("blockreference").setTabCompleter(new TabComplete());
         getServer().getPluginManager().registerEvents(new ClickListener(), this);
         if (getConfig().getBoolean("EnableStatistics")) {
+            getLogger().info(lang.getString("EnableStatistics"));
             int pluginId = 7055;
             Metrics metrics = new Metrics(this, pluginId);
         }
