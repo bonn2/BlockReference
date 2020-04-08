@@ -1,5 +1,5 @@
 name: BlockReference
-version: 1.1-SNAPSHOT
+version: 1.2
 main: bonn2.BlockReference.Main
 api-version: 1.13
 authors: [bonn2]
@@ -11,4 +11,4 @@ commands:
     aliases: blr
     permission: blockreference.user
     permission-message: You not have have permission to use this command!
-    usage: /blockreference <commad|block|look>
+    usage: /blockreference <toggle | look | clear>

@@ -1,8 +1,16 @@
-package bonn2.BlockReference.math;
+package bonn2.BlockReference;
 
+import bonn2.BlockReference.Main;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.util.Objects;
 
 public class User {
     private Location blockLoc, commandLoc;
@@ -16,8 +24,7 @@ public class User {
     public void setBlockLocation(Location blockLocation) { blockLoc = blockLocation; }
     public void setCommandLocation(Location commandLocation) { commandLoc = commandLocation; }
     public boolean hasBothLocations() {
-        if (commandLoc != null && blockLoc != null) { return true; }
-        return false;
+        return commandLoc != null && blockLoc != null;
     }
     public void clearLocations() { commandLoc = null; blockLoc = null; }
 
@@ -28,19 +35,25 @@ public class User {
     public boolean inSelectionMode() { return selectionMode; }
 
     public boolean getRelative(Player player) {
+        YamlConfiguration lang = Main.lang;
         if (commandLoc == null) {
-            player.sendMessage("To set command block location use /blockreference command");
+            player.sendMessage(Objects.requireNonNull(lang.getString("HowSetCommandLocation")));
             return false;
         }
         if (blockLoc == null) {
-            player.sendMessage("To set reference block location use /blockreference block");
+            player.sendMessage(Objects.requireNonNull(lang.getString("HowSetBlockLocation")));
             return false;
         }
         int x, y, z;
         x = blockLoc.getBlockX() - commandLoc.getBlockX();
         y = blockLoc.getBlockY() - commandLoc.getBlockY();
         z = blockLoc.getBlockZ() - commandLoc.getBlockZ();
-        player.sendMessage("The relative coordinates are: ~" + x + " ~" + y + " ~" + z);
+        TextComponent coords = new TextComponent("~" + x + " ~" + y + " ~" + z);
+        coords.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, "~" + x + " ~" + y + " ~" + z));
+        coords.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(lang.getString("CopyToClipboard")).create()));
+        ComponentBuilder message = new ComponentBuilder(Objects.requireNonNull(lang.getString("PrintRelativeCoords")))
+                .append(coords);
+        player.spigot().sendMessage(message.create());
         return true;
     }
 }
