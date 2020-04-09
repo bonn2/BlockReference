@@ -17,6 +17,7 @@ public class TabComplete implements TabCompleter {
                 output.add("look");
                 output.add("clear");
                 if (sender.hasPermission("blockreference.reload")) { output.add("reload"); }
+                break;
             }
             case 1: {
                 if ("toggle".startsWith(args[0].toLowerCase())) { output.add("toggle"); }
@@ -24,6 +25,7 @@ public class TabComplete implements TabCompleter {
                 if ("clear".startsWith(args[0].toLowerCase())) { output.add("clear"); }
                 if ("reload".startsWith(args[0].toLowerCase()) && sender.hasPermission("blockreference.reload"))
                 { output.add("reload"); }
+                break;
             }
         }
         return output;
